@@ -1,70 +1,40 @@
 package Terminal;
 
-import Commands.Echo;
-import Commands.ICommand;
-
-
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
+import Commands.*;
+
 
 public class Terminal {
-    enum commands{
-        exit("exit"),
-        cd("cd"),
-        echo("echo"),
-        pwd("pwd");
-
-        private final String commandName;
-
-        commands(String commandName){
-            this.commandName = commandName;
-        }
-
-        public String getCommandName() {
-            return commandName;
-        }
-
-        public static List<commands> getAllCommands(){
-            return Arrays.asList(Terminal.commands.values());
-        }
-    }
-
     Parser parser;
 
     //This method will choose the suitable command method to be called
     public void chooseCommandAction(){
         ICommand command;
-        if (this.parser.getCommandName().equals(commands.exit)){
+
+        if (this.parser.getCommandName().equals(Commands.commandsEnum.exit.getCommandName())){
             System.exit(0);
         }
 
-        else if (this.parser.getCommandName().equals(commands.echo)) {
+        else if (this.parser.getCommandName().equals(Commands.commandsEnum.echo.getCommandName())) {
             command = new Echo();
-            runCommandAction(command);
+            Commands.runCommandAction(command, this.parser);
         }
-    }
 
-    void runCommandAction(ICommand command) {
-        if (command.isValidArgs(parser.getArgs())){
-            try {
-                command.PutArgs(parser.getArgs());
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }
-            command.runCommand();
+        else{
+            System.out.println("\u001B[31m" + "There's no command named \"" + this.parser.getCommandName() + "\"");
         }
+
     }
 
     public static void main(String[] args){
+        Terminal terminal = new Terminal();
         while (true){
             Scanner scanner = new Scanner(System.in);
 
             String input = scanner.nextLine();
 
-            Terminal terminal = new Terminal();
             terminal.parser = new Parser();
+
             if (terminal.parser.parse(input)){
                 terminal.chooseCommandAction();
             }else{
