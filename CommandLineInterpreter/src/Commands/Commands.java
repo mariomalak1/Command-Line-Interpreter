@@ -33,6 +33,7 @@ public class Commands {
                 command.PutArgs(parser.getArgs());
             }
             catch (Exception e){
+                System.out.println("a7a");
                 e.printStackTrace();
             }
             command.runCommand();

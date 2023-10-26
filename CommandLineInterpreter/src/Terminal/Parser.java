@@ -12,18 +12,33 @@ public class Parser {
         String[] inputParts = input.split(" ");
         this.commandName = inputParts[0];
 
+        // check on command name that is first of the all
+        if (CommandNameParseCheck() == null){
+            return false;
+        }else{
+            args = new String[inputParts.length - 1];
+            putArgs(inputParts, args, inputParts.length);
+            return true;
+        }
+    }
+
+    private void putArgs(String [] input, String [] args, int end){
+        for(int i = 1, j = 0; i < end; i++, j++){
+            args[j] = input[i];
+        }
+    }
+
+    private String CommandNameParseCheck(){
         for (Commands.commandsEnum command: Commands.commandsEnum.getAllCommands()) {
             if (commandName.equals(command.getCommandName())){
-                args = new String[1];
-                args[0] = "mario malak alabd";
-                return true;
+                return command.getCommandName();
             }
         }
-        return false;
+        return null;
     }
 
     public String getCommandName(){return commandName;}
 
-    public String[] getArgs(){return new String[0];}
+    public String[] getArgs(){return this.args;}
 
 }
