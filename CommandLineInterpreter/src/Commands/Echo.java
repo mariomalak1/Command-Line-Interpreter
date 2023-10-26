@@ -1,7 +1,5 @@
 package Commands;
 
-import com.sun.jdi.connect.Connector;
-
 public class Echo implements ICommand {
     public String str;
 

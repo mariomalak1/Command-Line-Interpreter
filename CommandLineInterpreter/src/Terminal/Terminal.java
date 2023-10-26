@@ -19,6 +19,10 @@ public class Terminal {
             command = new Echo();
             Commands.runCommandAction(command, this.parser);
         }
+        else if (this.parser.getCommandName().equals(Commands.commandsEnum.pwd.getCommandName())) {
+            command = new PWD();
+            Commands.runCommandAction(command, this.parser);
+        }
 
         else{
             System.out.println("\u001B[31m" + "There's no command named \"" + this.parser.getCommandName() + "\"");

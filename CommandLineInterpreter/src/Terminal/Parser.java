@@ -1,6 +1,6 @@
 package Terminal;
 
-import java.util.Arrays;
+import Commands.Commands;
 
 public class Parser {
     String commandName;
@@ -12,7 +12,7 @@ public class Parser {
         String[] inputParts = input.split(" ");
         this.commandName = inputParts[0];
 
-        for (Terminal.commands command: Terminal.commands.getAllCommands()) {
+        for (Commands.commandsEnum command: Commands.commandsEnum.getAllCommands()) {
             if (commandName.equals(command.getCommandName())){
                 args = new String[1];
                 args[0] = "mario malak alabd";
