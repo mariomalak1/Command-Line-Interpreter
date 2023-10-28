@@ -10,7 +10,8 @@ public class Commands {
         exit("exit"),
         cd("cd"),
         echo("echo"),
-        pwd("pwd");
+        pwd("pwd"),
+        rmdir("rmdir");
 
         private final String commandName;
 
@@ -28,15 +29,13 @@ public class Commands {
     }
 
     public static void runCommandAction(ICommand command, Parser parser) {
-        if (command.isValidArgs(parser.getArgs())){
-            try {
-                command.PutArgs(parser.getArgs());
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }
-            command.runCommand();
+        try {
+            command.PutArgs(parser.getArgs());
         }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        command.runCommand();
     }
 
 }
