@@ -3,7 +3,7 @@ package Commands;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class PWD implements ICommand{
+public final class PWD implements ICommand{
 
     @Override
     public Boolean isValidArgs(String[] args) {
@@ -11,16 +11,19 @@ public class PWD implements ICommand{
     }
 
     @Override
-    public void runCommand() {
+    public void PutArgs(String[] args) throws Exception {
+        if(! isValidArgs(args)){
+            throw new Exception("pwd Command doesn't take any argument");
+        }
+    }
+
+    public static Path CurrentAbsolutePath(){
         Path currRelativePath = Paths.get("");
-        String currAbsolutePathString = currRelativePath.toAbsolutePath().toString();
-        System.out.println(currAbsolutePathString);
+        return currRelativePath.toAbsolutePath();
     }
 
     @Override
-    public void PutArgs(String[] args) throws Exception {
-        if(! isValidArgs(args)){
-            throw new Exception("InValid Args");
-        }
+    public void runCommand() {
+        System.out.println(CurrentAbsolutePath());
     }
 }

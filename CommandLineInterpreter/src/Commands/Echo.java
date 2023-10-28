@@ -1,7 +1,7 @@
 package Commands;
 
-public class Echo implements ICommand {
-    public String str;
+public final class Echo implements ICommand {
+    String str;
 
     @Override
     public Boolean isValidArgs(String[] args) {
@@ -23,7 +23,7 @@ public class Echo implements ICommand {
             str += args[args.length - 1];
         }
         else{
-            throw new Exception("InValid Args");
+            str = "ECHO is on.";
         }
     }
 }
