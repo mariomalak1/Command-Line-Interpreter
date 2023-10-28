@@ -11,7 +11,8 @@ public class Commands {
         cd("cd"),
         echo("echo"),
         pwd("pwd"),
-        rmdir("rmdir");
+        rmdir("rmdir"),
+        history("history");
 
         private final String commandName;
 
