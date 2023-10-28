@@ -24,6 +24,6 @@ public final class PWD implements ICommand{
 
     @Override
     public void runCommand() {
-        System.out.println(CurrentAbsolutePath());
+        System.out.println(System.getProperty("user.dir"));
     }
 }

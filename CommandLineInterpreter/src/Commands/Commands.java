@@ -12,6 +12,8 @@ public class Commands {
         echo("echo"),
         pwd("pwd"),
         rmdir("rmdir"),
+        touch("touch"),
+        rm("rm"),
         history("history");
 
         private final String commandName;
