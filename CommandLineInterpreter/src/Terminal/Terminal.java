@@ -34,6 +34,19 @@ public class Terminal {
             Commands.runCommandAction(history, this.parser);
         }
 
+        else if (this.parser.getCommandName().equals(Commands.commandsEnum.mkdir.getCommandName())) {
+            Commands.runCommandAction(history, this.parser);
+        }
+
+        else if (this.parser.getCommandName().equals(Commands.commandsEnum.cp.getCommandName())) {
+            command = new CP();
+            Commands.runCommandAction(command, parser);
+        }
+
+        else if (this.parser.getCommandName().equals(Commands.commandsEnum.wc.getCommandName())) {
+            Commands.runCommandAction(history, this.parser);
+        }
+
         else{
             System.out.println("\u001B[31m" + "There's no command named \"" + this.parser.getCommandName() + "\"");
         }
