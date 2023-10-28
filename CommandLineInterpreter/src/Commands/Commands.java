@@ -12,7 +12,10 @@ public class Commands {
         echo("echo"),
         pwd("pwd"),
         rmdir("rmdir"),
-        history("history");
+        history("history"),
+        cp("cp"),
+        wc("wc"),
+        mkdir("mkdir");
 
         private final String commandName;
 
