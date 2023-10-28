@@ -31,11 +31,11 @@ public class Commands {
     public static void runCommandAction(ICommand command, Parser parser) {
         try {
             command.PutArgs(parser.getArgs());
+            command.runCommand();
         }
         catch (Exception e){
             e.printStackTrace();
         }
-        command.runCommand();
     }
 
 }

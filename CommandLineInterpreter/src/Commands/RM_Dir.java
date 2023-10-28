@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.*;
 
 public final class RM_Dir implements ICommand{
-    String PathDir_or_asterisk;
+    String PathDir_or_asterisk = "";
 
     @Override
     public Boolean isValidArgs(String[] args) {
@@ -20,19 +20,19 @@ public final class RM_Dir implements ICommand{
     }
 
     @Override
-    public void PutArgs(String[] args) throws Exception {
+    public void PutArgs(String[] args) throws CommandsException {
         if(isValidArgs(args)){
             if (args[0].equals("*") || isEmptyDir(args[0])){
-                if (PathDirChecker(PathDir_or_asterisk).toAbsolutePath().equals(PWD.CurrentAbsolutePath())){
-                    throw new Exception("The process cannot access the file because it is being used by another process.");
+                if ((! args[0].equals("*")) && PathDirChecker(args[0]).toAbsolutePath().equals(PWD.CurrentAbsolutePath())){
+                    throw new CommandsException("The process cannot access the file because it is being used by another process.");
                 }
                 PathDir_or_asterisk = args[0];
             }
             else{
-                throw new Exception("The directory is not empty.");
+                throw new CommandsException("The directory is not empty.");
             }
         }else {
-            throw new Exception("The system cannot find the file specified.");
+            throw new CommandsException("The system cannot find the file specified.");
         }
     }
 
@@ -64,13 +64,12 @@ public final class RM_Dir implements ICommand{
             if (isEmptyDir(dir.toAbsolutePath().toString())) {
                 Files.delete(dir);
             }
-            System.out.println("Directory and its contents have been deleted.");
         } catch (IOException e) {
             System.err.println("Failed to delete the directory: " + e.getMessage());
         }
     }
 
-    public void deleteEmptyDir_s() throws IOException {
+    public void deleteEmptyDir_s() throws CommandsException, IOException {
         if (PathDir_or_asterisk.equals("*")){
             Path currentPath = PWD.CurrentAbsolutePath();
 
@@ -80,15 +79,20 @@ public final class RM_Dir implements ICommand{
                 // this function check that the dir is empty
                 deleteDir(directory);
             }
-
         }
-
         else{
             deleteDir( PathDirChecker(PathDir_or_asterisk) );
         }
+        System.out.println();
     }
 
     @Override
     public void runCommand() {
+        try {
+            this.deleteEmptyDir_s();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }
