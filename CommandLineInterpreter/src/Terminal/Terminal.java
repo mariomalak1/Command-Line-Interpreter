@@ -6,6 +6,7 @@ import Commands.*;
 
 public class Terminal {
     Parser parser;
+    static History history;
 
     //This method will choose the suitable command method to be called
     public void chooseCommandAction(){
@@ -29,7 +30,9 @@ public class Terminal {
             command = new RM_Dir();
             Commands.runCommandAction(command, this.parser);
         }
-
+        else if (this.parser.getCommandName().equals(Commands.commandsEnum.history.getCommandName())) {
+            Commands.runCommandAction(history, this.parser);
+        }
 
         else{
             System.out.println("\u001B[31m" + "There's no command named \"" + this.parser.getCommandName() + "\"");
@@ -39,6 +42,7 @@ public class Terminal {
 
     public static void main(String[] args){
         Terminal terminal = new Terminal();
+        history = new History();
         while (true){
             Scanner scanner = new Scanner(System.in);
 
@@ -47,6 +51,7 @@ public class Terminal {
             terminal.parser = new Parser();
 
             if (terminal.parser.parse(input)){
+                history.addCommand(input);
                 terminal.chooseCommandAction();
             }else{
                 System.out.println("\u001B[31m" + "There's no command named \"" + input + "\"");
