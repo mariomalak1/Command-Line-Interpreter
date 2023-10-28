@@ -14,7 +14,7 @@ public final class Echo implements ICommand {
     }
 
     @Override
-    public void PutArgs(String[] args) throws Exception {
+    public void PutArgs(String[] args) throws CommandsException {
         str = "";
         if (isValidArgs(args)){
             for (int i = 0; i < args.length - 1; i++) {

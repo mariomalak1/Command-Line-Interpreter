@@ -13,7 +13,7 @@ public final class PWD implements ICommand{
     @Override
     public void PutArgs(String[] args) throws Exception {
         if(! isValidArgs(args)){
-            throw new Exception("pwd Command doesn't take any argument");
+            throw new CommandsException("pwd Command doesn't take any argument");
         }
     }
 
