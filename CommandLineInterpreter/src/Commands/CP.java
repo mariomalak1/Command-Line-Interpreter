@@ -6,8 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class CP implements ICommand{
-    private String Source = "";
-    private String Destination = "";
+    private String Source;
+    private String Destination;
 
     @Override
     public Boolean isValidArgs(String[] args) {
@@ -18,8 +18,14 @@ public class CP implements ICommand{
     public void PutArgs(String[] args) throws CommandsException {
         try{
             if (isValidArgs(args)){
-                if ( PathFileChecker(args[0]) != null && PathFileCheckerNotExist(args[1]) != null){
+                Source = "";
+                Destination = "";
+                if ( PathFileChecker(args[0]) != null){
                     Source = args[0];
+                    if (IfDirPutFileName(args[1]) != null){
+                        Destination = IfDirPutFileName(args[1]).toString();
+                        return;
+                    }
                     Destination = args[1];
                 }else{
                     throw new CommandsException("Not valid path.");
@@ -31,15 +37,11 @@ public class CP implements ICommand{
         catch (CommandsException e){
             System.out.println(e.getMessage());
         }
-        // if the first is path or relative file
-        // if the second is the same
-        // put the first in source and the second in destination
     }
 
-    public void run(){
+    public void copy(){
         try {
-            Files.copy(PathFileChecker(Source), PathFileChecker(Destination));
-            System.out.println();
+            Files.copy(StringConvertToPath(Source), StringConvertToPath(Destination));
         }
         catch (IOException e) {
             System.err.println("Failed to copy file: " + e.getMessage());
@@ -55,12 +57,22 @@ public class CP implements ICommand{
         return null;
     }
 
-    private Path PathFileCheckerNotExist(String str){
+    private Path StringConvertToPath(String str){
         return Paths.get(str);
+    }
+
+    private Path IfDirPutFileName(String str){
+        Path destinationPath = StringConvertToPath(str);
+        if(Files.isDirectory(destinationPath)){
+            Path sourcePath = StringConvertToPath(Source);
+            String fileName = sourcePath.getFileName().toString();
+            return destinationPath.resolve(fileName);
+        }
+        return null;
     }
 
     @Override
     public void runCommand() {
-        run();
+        copy();
     }
 }
