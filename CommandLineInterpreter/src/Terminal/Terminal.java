@@ -30,24 +30,29 @@ public class Terminal {
             command = new RM_Dir();
             Commands.runCommandAction(command, this.parser);
         }
+
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.history.getCommandName())) {
             Commands.runCommandAction(history, this.parser);
         }
+
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.touch.getCommandName())) {
             command = new Touch();
             Commands.runCommandAction(command, this.parser);
         }
+
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.cd.getCommandName())) {
             command = new Cd();
             Commands.runCommandAction(command, this.parser);
        }
+
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.rm.getCommandName())) {
             command = new Rm();
             Commands.runCommandAction(command, this.parser);
         }
 
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.mkdir.getCommandName())) {
-            Commands.runCommandAction(history, this.parser);
+            command = new MkDir();
+            Commands.runCommandAction(command, parser);
         }
 
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.cp.getCommandName())) {
@@ -56,7 +61,18 @@ public class Terminal {
         }
 
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.wc.getCommandName())) {
-            Commands.runCommandAction(history, this.parser);
+            command = new WC();
+            Commands.runCommandAction(command, parser);
+        }
+
+        else if (this.parser.getCommandName().equals(Commands.commandsEnum.ls.getCommandName())) {
+            command = new LS();
+            Commands.runCommandAction(command, parser);
+        }
+
+        else if (this.parser.getCommandName().equals(Commands.commandsEnum.ls_r.getCommandName())) {
+            command = new LS_R();
+            Commands.runCommandAction(command, parser);
         }
 
         else{
