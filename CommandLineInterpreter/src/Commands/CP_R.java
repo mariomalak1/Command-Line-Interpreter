@@ -27,10 +27,12 @@ public final class CP_R implements ICommand{
             throw new CommandsException("It's not Directory");
         }
         if (!isDir(destination.toString())) {
-            throw new CommandsException("It's not Directory");
+            try {
+                Files.createDirectories(destination);
+            } catch (IOException e) {
+                System.err.println("Error: While creating Dir : " + destination.getFileName().toString());
+            }
         }
-
-        File[] filesListSource = source.toFile().listFiles();
         try {
             DirectoryStream<Path> directoryStream = Files.newDirectoryStream(source);
             copyFiles(directoryStream, destination);
@@ -42,7 +44,7 @@ public final class CP_R implements ICommand{
 
     public static void copyFiles(DirectoryStream<Path> filesListSource, Path destination) throws IOException {
         for (Path file: filesListSource) {
-            Files.copy(file, destination);
+            Files.copy(file, destination.resolve(file.getFileName().toString()));
         }
     }
 
@@ -57,9 +59,15 @@ public final class CP_R implements ICommand{
             throw new CommandsException("Invalid Parameters");
         }
 
-        for (String arg : args) {
-            if (!isDir(arg)) {
-                throw new CommandsException("It's not Directory");
+        for (int i = 0; i < args.length; i++) {
+            if (!isDir(args[i])) {
+                if (i == 1){
+                    try {
+                        Files.createDirectories(Paths.get(args[i]));
+                    } catch (IOException e) {
+                        System.err.println("Error: While creating Dir : " + Paths.get(args[i]).getFileName().toString());
+                    }
+                }
             }
         }
 
