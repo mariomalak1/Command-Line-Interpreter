@@ -12,16 +12,13 @@ public class Commands {
         echo("echo"),
         pwd("pwd"),
         rmdir("rmdir"),
-<<<<<<< HEAD
         touch("touch"),
         rm("rm"),
-        history("history");
-=======
         history("history"),
         cp("cp"),
         wc("wc"),
         mkdir("mkdir");
->>>>>>> eb53aa4099f9d994a61ad5cdda65aeaddb1b0db7
+
 
         private final String commandName;
 

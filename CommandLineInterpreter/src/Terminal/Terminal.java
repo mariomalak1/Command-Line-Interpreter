@@ -47,7 +47,8 @@ public class Terminal {
         }
 
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.mkdir.getCommandName())) {
-            Commands.runCommandAction(history, this.parser);
+            command = new Mkdir();
+            Commands.runCommandAction(command, this.parser);
         }
 
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.cp.getCommandName())) {
@@ -56,7 +57,8 @@ public class Terminal {
         }
 
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.wc.getCommandName())) {
-            Commands.runCommandAction(history, this.parser);
+            command = new Wc();
+            Commands.runCommandAction(command, this.parser);
         }
 
         else{

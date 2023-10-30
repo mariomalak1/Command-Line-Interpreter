@@ -16,8 +16,10 @@ public class Rm implements ICommand{
     public void runCommand()  {
         File deleted = new File(str);
         if (deleted.exists()) {
-            deleted.delete();
+           boolean r= deleted.delete();
+           System.out.println(r);
         }
+
     }
 
     @Override
