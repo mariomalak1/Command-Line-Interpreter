@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public  class cat implements ICommand {
+public  class CAT implements ICommand {
     @Override
     public Boolean isValidArgs(String[] args) {
         return null;
@@ -12,7 +12,7 @@ public  class cat implements ICommand {
     @Override
     public void runCommand() {
         Scanner input = new Scanner(System.in);
-        System.out.print("choose: \n 1- cat 1 file \n 2- cat 2 file \n");
+        System.out.print("choose: \n 1- CAT 1 file \n 2- CAT 2 file \n");
         int choose= input.nextInt();
 
         if(choose == 1){
