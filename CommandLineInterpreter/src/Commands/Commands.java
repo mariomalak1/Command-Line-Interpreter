@@ -16,9 +16,16 @@ public class Commands {
         rm("rm"),
         history("history"),
         cp("cp"),
+        cp_r("cp-r"),
         wc("wc"),
+<<<<<<< HEAD
         mkdir("mkdir");
 
+=======
+        mkdir("mkdir"),
+        ls("ls"),
+        ls_r("ls-r");
+>>>>>>> 25712aa6ffeb1f899001b108909c739bb26de733
 
         private final String commandName;
 
@@ -41,8 +48,7 @@ public class Commands {
             command.runCommand();
         }
         catch (Exception e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
-
 }

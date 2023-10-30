@@ -30,25 +30,34 @@ public class Terminal {
             command = new RM_Dir();
             Commands.runCommandAction(command, this.parser);
         }
+
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.history.getCommandName())) {
             Commands.runCommandAction(history, this.parser);
         }
+
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.touch.getCommandName())) {
             command = new Touch();
             Commands.runCommandAction(command, this.parser);
         }
+
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.cd.getCommandName())) {
             command = new Cd();
             Commands.runCommandAction(command, this.parser);
        }
+
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.rm.getCommandName())) {
             command = new Rm();
             Commands.runCommandAction(command, this.parser);
         }
 
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.mkdir.getCommandName())) {
+<<<<<<< HEAD
             command = new Mkdir();
             Commands.runCommandAction(command, this.parser);
+=======
+            command = new MkDir();
+            Commands.runCommandAction(command, parser);
+>>>>>>> 25712aa6ffeb1f899001b108909c739bb26de733
         }
 
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.cp.getCommandName())) {
@@ -56,9 +65,29 @@ public class Terminal {
             Commands.runCommandAction(command, parser);
         }
 
+        else if (this.parser.getCommandName().equals(Commands.commandsEnum.cp_r.getCommandName())) {
+            command = new CP_R();
+            Commands.runCommandAction(command, parser);
+        }
+
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.wc.getCommandName())) {
+<<<<<<< HEAD
             command = new Wc();
             Commands.runCommandAction(command, this.parser);
+=======
+            command = new WC();
+            Commands.runCommandAction(command, parser);
+        }
+
+        else if (this.parser.getCommandName().equals(Commands.commandsEnum.ls.getCommandName())) {
+            command = new LS();
+            Commands.runCommandAction(command, parser);
+        }
+
+        else if (this.parser.getCommandName().equals(Commands.commandsEnum.ls_r.getCommandName())) {
+            command = new LS_R();
+            Commands.runCommandAction(command, parser);
+>>>>>>> 25712aa6ffeb1f899001b108909c739bb26de733
         }
 
         else{
