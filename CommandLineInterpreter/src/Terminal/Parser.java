@@ -21,9 +21,7 @@ public class Parser {
 
             }
         }
-        for(int i =0; i<inputParts.length;i++){
-            System.out.println(inputParts[i]);
-        }
+
         // check on command name that is first of the all
         if (CommandNameParseCheck() == null){
             return false;

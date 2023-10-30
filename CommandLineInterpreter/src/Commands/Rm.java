@@ -13,16 +13,16 @@ public class Rm implements ICommand{
 
     @Override
     public void runCommand()  {
-<<<<<<< HEAD
+
         File deleted = new File(str);
         if (deleted.exists()) {
            boolean r= deleted.delete();
            System.out.println(r);
         }
 
-=======
+
         deleteFile(this.str);
->>>>>>> 25712aa6ffeb1f899001b108909c739bb26de733
+
     }
 
     @Override
