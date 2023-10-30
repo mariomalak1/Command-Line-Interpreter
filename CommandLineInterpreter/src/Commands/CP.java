@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class CP implements ICommand{
     private String Source;
@@ -39,9 +40,9 @@ public class CP implements ICommand{
         }
     }
 
-    public void copy(){
+    public static void copy(String source, String destination){
         try {
-            Files.copy(StringConvertToPath(Source), StringConvertToPath(Destination));
+            Files.copy(StringConvertToPath(source), StringConvertToPath(destination), StandardCopyOption.REPLACE_EXISTING);
         }
         catch (IOException e) {
             System.err.println("Failed to copy file: " + e.getMessage());
@@ -57,7 +58,7 @@ public class CP implements ICommand{
         return null;
     }
 
-    private Path StringConvertToPath(String str){
+    private static Path StringConvertToPath(String str){
         return Paths.get(str);
     }
 
@@ -73,6 +74,6 @@ public class CP implements ICommand{
 
     @Override
     public void runCommand() {
-        copy();
+        copy(this.Source, this.Destination);
     }
 }

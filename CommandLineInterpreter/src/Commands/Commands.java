@@ -16,6 +16,7 @@ public class Commands {
         rm("rm"),
         history("history"),
         cp("cp"),
+        cp_r("cp-r"),
         wc("wc"),
         mkdir("mkdir"),
         ls("ls"),
@@ -45,5 +46,4 @@ public class Commands {
             System.out.println(e.getMessage());
         }
     }
-
 }

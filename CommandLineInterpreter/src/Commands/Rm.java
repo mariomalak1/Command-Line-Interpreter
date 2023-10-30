@@ -42,5 +42,4 @@ public class Rm implements ICommand{
         }
         return false;
     }
-
 }

@@ -14,13 +14,10 @@ public  class Touch implements ICommand {
     @Override
     public void runCommand() {
         try {
-
             File myFile = new File(str);
-            if (myFile.createNewFile()) {
-                System.out.println("created");
-            }
+            myFile.createNewFile();
         } catch (IOException E) {
-            System.out.println("error");
+            System.out.println(E.getMessage());
         }
     }
 

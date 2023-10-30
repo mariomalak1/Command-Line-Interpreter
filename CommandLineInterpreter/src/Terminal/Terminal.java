@@ -60,6 +60,11 @@ public class Terminal {
             Commands.runCommandAction(command, parser);
         }
 
+        else if (this.parser.getCommandName().equals(Commands.commandsEnum.cp_r.getCommandName())) {
+            command = new CP_R();
+            Commands.runCommandAction(command, parser);
+        }
+
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.wc.getCommandName())) {
             command = new WC();
             Commands.runCommandAction(command, parser);
