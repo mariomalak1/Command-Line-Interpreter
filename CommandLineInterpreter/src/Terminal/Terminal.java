@@ -51,11 +51,8 @@ public class Terminal {
         }
 
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.mkdir.getCommandName())) {
-
             command = new MkDir();
             Commands.runCommandAction(command, this.parser);
-
-
         }
 
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.cp.getCommandName())) {
@@ -69,10 +66,8 @@ public class Terminal {
         }
 
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.wc.getCommandName())) {
-
             command = new WC();
             Commands.runCommandAction(command, this.parser);
-
         }
 
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.ls.getCommandName())) {
@@ -83,13 +78,11 @@ public class Terminal {
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.ls_r.getCommandName())) {
             command = new LS_R();
             Commands.runCommandAction(command, parser);
-
         }
 
         else{
             System.out.println("\u001B[31m" + "There's no command named \"" + this.parser.getCommandName() + "\"");
         }
-
     }
 
     public static void main(String[] args){

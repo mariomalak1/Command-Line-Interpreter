@@ -11,7 +11,11 @@ public class MkDir implements ICommand{
 
     @Override
     public void runCommand() {
+<<<<<<< HEAD
         File directory = new File(System.getProperty("user.dir"));
+=======
+        File directory = new File(str);
+>>>>>>> e942fc4cb408d94b53de06fb46d33b8ac8ea849f
         try {
             if (directory.mkdir()) {
                 System.out.println("Directory is created");
