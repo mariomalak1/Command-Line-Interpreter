@@ -9,18 +9,8 @@ public class Parser {
     //This method will divide the input into commandName and args
     //where "input" is the string command entered by the user
     public boolean parse(String input){
-        String[] inputParts = input.split(" ",2);
+        String[] inputParts = input.split(" ");
         this.commandName = inputParts[0];
-        if(inputParts.length>1) {
-
-
-            if (inputParts[1].charAt(0) == '.' || inputParts[1].charAt(1) == ':') {
-
-            } else {
-                inputParts = input.split(" ");
-
-            }
-        }
 
         // check on command name that is first of the all
         if (CommandNameParseCheck() == null){

@@ -15,7 +15,7 @@ public class LS implements ICommand{
 
     public static List<String> ListOfFiles(String path){
         List<String> list = new ArrayList<>();
-        File currentDir = new File(path);
+        File currentDir = new File(System.getProperty("user.dir"));
         try {
             File[] files = currentDir.listFiles();
 
