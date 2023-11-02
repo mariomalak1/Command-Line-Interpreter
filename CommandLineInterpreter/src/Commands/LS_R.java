@@ -6,7 +6,7 @@ import java.util.List;
 public class LS_R implements ICommand{
     @Override
     public Boolean isValidArgs(String[] args) {
-        return (args.length == 0);
+        return (args.length == 1);
     }
 
     @Override

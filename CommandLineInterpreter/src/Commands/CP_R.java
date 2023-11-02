@@ -10,7 +10,7 @@ public final class CP_R implements ICommand{
 
     @Override
     public Boolean isValidArgs(String[] args) {
-        return args.length == 2;
+        return args.length == 3;
     }
 
     @Override
@@ -59,9 +59,9 @@ public final class CP_R implements ICommand{
             throw new CommandsException("Invalid Parameters");
         }
 
-        for (int i = 0; i < args.length; i++) {
+        for (int i = 1; i < args.length; i++) {
             if (!isDir(args[i])) {
-                if (i == 1){
+                if (i == 2){
                     try {
                         Files.createDirectories(Paths.get(args[i]));
                     } catch (IOException e) {
@@ -71,7 +71,7 @@ public final class CP_R implements ICommand{
             }
         }
 
-        Source = Paths.get(args[0]);
-        Destination = Paths.get(args[1]);
+        Source = Paths.get(args[1]);
+        Destination = Paths.get(args[2]);
     }
 }

@@ -56,8 +56,16 @@ public class Terminal {
         }
 
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.cp.getCommandName())) {
-            command = new CP();
-            Commands.runCommandAction(command, parser);
+            if(parser.args.length>0&&parser.args[0].equals("-r")){
+
+                command = new CP_R();
+                Commands.runCommandAction(command, parser);
+            }
+            else {
+                command = new CP();
+                Commands.runCommandAction(command, parser);
+            }
+
         }
 
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.cp_r.getCommandName())) {
@@ -71,13 +79,14 @@ public class Terminal {
         }
 
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.ls.getCommandName())) {
-            command = new LS();
-            Commands.runCommandAction(command, parser);
-        }
-
-        else if (this.parser.getCommandName().equals(Commands.commandsEnum.ls_r.getCommandName())) {
-            command = new LS_R();
-            Commands.runCommandAction(command, parser);
+            if(parser.args.length>0&&parser.args[0].equals("-r")){
+                command = new LS_R();
+                Commands.runCommandAction(command, parser);
+            }
+            else {
+                command = new LS();
+                Commands.runCommandAction(command, parser);
+            }
         }
 
         else{
