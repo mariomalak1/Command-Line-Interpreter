@@ -3,7 +3,8 @@ package Commands;
 import java.io.File;
 
 public class MkDir implements ICommand{
-    String [] str ;
+    String [] DirNames;
+
     @Override
     public Boolean isValidArgs(String[] args) {
         return args.length >= 1;
@@ -11,55 +12,43 @@ public class MkDir implements ICommand{
 
     @Override
     public void runCommand() {
-        File [] directory = new File[str.length];
-        if(str.length>1){
+        MakeDirsInCurrentPath(this.DirNames);
+    }
 
-            for(int i =0;i<str.length;i++){
-                 directory[i] = new File(str[i]).getAbsoluteFile();
-        MakeDirInCurrentPath(str);
+    public static void MakeDirsInCurrentPath(String [] dirNames){
+        for (String filename : dirNames){
+            MakeDirInCurrentPath(filename);
+        }
     }
 
     public static void MakeDirInCurrentPath(String path){
         File directory = new File(path);
         try {
-            if (directory.mkdir()) {
-                System.out.println();
-            } else {
+            if (! directory.mkdir()) {
                 System.err.println("Directory cannot be created");
             }
+        } catch (SecurityException e) {
+            System.err.println("Encountered a security exception: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Encountered an exception: " + e.getMessage());
         }
-        else{
-             directory[0] = new File(str[0]).getAbsoluteFile();
-        }
-        for(int i=0; i<str.length;i++){
-            try {
-                if (directory[i].mkdir()) {
-                    System.out.println("Directory is created");
-                } else {
-                    System.out.println("Directory cannot be created");
-                }
-            } catch (SecurityException e) {
-                System.out.println("Encountered a security exception: " + e.getMessage());
-            } catch (Exception e) {
-                System.out.println("Encountered an exception: " + e.getMessage());
-            }
+    }
 
-        }
-
+    private static boolean CanMakeDir(String dirName){
+        File file = new File(dirName);
+        return (! file.exists());
     }
 
     @Override
     public void PutArgs(String[] args) throws Exception {
-        str =new String[args.length];
         if (isValidArgs(args)){
-            if(args.length >= 1){
-                for(int i =0;i<args.length;i++){
-                    str[i] = args[i];
+            DirNames = new String[args.length];
+            for (int i = 0; i < args.length; i++) {
+                if (CanMakeDir(args[i])){
+                    DirNames[i] = args[i];
                 }
-
             }
-
-
+            DirNames = args;
         }
         else{
             throw new CommandsException("InValid Args");

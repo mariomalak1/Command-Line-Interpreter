@@ -18,10 +18,11 @@ public class Parser {
         if (CommandNameParseCheck() == null){
             return false;
         }else{
-            if ((this.commandName.equals(Commands.commandsEnum.cp)) || (this.commandName.equals(Commands.commandsEnum.ls)) ){
-                if (args.length > 0){
-                    if (args[0].equalsIgnoreCase("-r")){
+            if ((this.commandName.equals(Commands.commandsEnum.cp.getCommandName())) || (this.commandName.equals(Commands.commandsEnum.ls.getCommandName())) ){
+                if (inputParts.length > 1){
+                    if (inputParts[1].equalsIgnoreCase("-r")){
                         commandName += "-r";
+                        args = new String[inputParts.length - 2];
                         putArgs(inputParts, args, inputParts.length, 2);
                         return true;
                     }

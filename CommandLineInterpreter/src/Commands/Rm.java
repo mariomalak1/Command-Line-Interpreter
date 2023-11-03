@@ -19,10 +19,7 @@ public class Rm implements ICommand{
            boolean r= deleted.delete();
            System.out.println(r);
         }
-
-
         deleteFile(this.str);
-
     }
 
     @Override
