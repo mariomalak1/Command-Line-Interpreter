@@ -13,9 +13,9 @@ public class LS implements ICommand{
         return (args.length == 0);
     }
 
-    public static List<String> ListOfFiles(String path){
+    public static List<String> ListOfFiles(){
         List<String> list = new ArrayList<>();
-        File currentDir = new File(System.getProperty("user.dir"));
+        File currentDir = PWD.CurrentAbsolutePath().toFile();
         try {
             File[] files = currentDir.listFiles();
 
@@ -39,17 +39,16 @@ public class LS implements ICommand{
 
     @Override
     public void runCommand() {
-        String path = PWD.CurrentAbsolutePath().toString();
-        List<String> listOfFiles = ListOfFiles(path);
+        List<String> listOfFiles = ListOfFiles();
         printListDirs(listOfFiles);
     }
 
     public static void printListDirs(List<String> listOfFiles){
         if (listOfFiles.isEmpty()){
-            System.out.println();
+            System.out.println("\u001B[0m");
         }else{
             for (String file: listOfFiles) {
-                System.out.println(file);
+                System.out.println("\u001B[0m" + file);
             }
         }
     }

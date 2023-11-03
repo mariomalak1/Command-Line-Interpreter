@@ -11,8 +11,7 @@ public class LS_R implements ICommand{
 
     @Override
     public void runCommand() {
-        String path = PWD.CurrentAbsolutePath().toString();
-        List<String> listOfFiles = LS.ListOfFiles(path);
+        List<String> listOfFiles = LS.ListOfFiles();
         // reverse order of listing
         Collections.reverse(listOfFiles);
         LS.printListDirs(listOfFiles);
