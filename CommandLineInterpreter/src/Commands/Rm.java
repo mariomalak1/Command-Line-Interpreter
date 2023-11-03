@@ -13,7 +13,16 @@ public class Rm implements ICommand{
 
     @Override
     public void runCommand()  {
+
+        File deleted = new File(str);
+        if (deleted.exists()) {
+           boolean r= deleted.delete();
+           System.out.println(r);
+        }
+
+
         deleteFile(this.str);
+
     }
 
     @Override

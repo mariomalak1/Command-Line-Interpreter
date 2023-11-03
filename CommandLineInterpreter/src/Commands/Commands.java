@@ -20,7 +20,9 @@ public class Commands {
         wc("wc"),
         mkdir("mkdir"),
         ls("ls"),
-        ls_r("ls-r");
+        ls_r("ls-r"),
+        CAT("cat");
+
 
         private final String commandName;
 
