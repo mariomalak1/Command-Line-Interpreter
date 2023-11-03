@@ -48,7 +48,7 @@ public class Cd implements ICommand {
 
     @Override
     public void runCommand()  {
-        System.out.println(ChangeDir(this.str));
+        ChangeDir(this.str);
     }
 }
 
