@@ -11,14 +11,16 @@ public class MkDir implements ICommand{
 
     @Override
     public void runCommand() {
+        MakeDirInCurrentPath(str);
+    }
 
-        File directory = new File(System.getProperty("user.dir"));
-
+    public static void MakeDirInCurrentPath(String path){
+        File directory = new File(path);
         try {
             if (directory.mkdir()) {
-                System.out.println("Directory is created");
+                System.out.println();
             } else {
-                System.out.println("Directory cannot be created");
+                System.err.println("Directory cannot be created");
             }
         } catch (SecurityException e) {
             System.out.println("Encountered a security exception: " + e.getMessage());
@@ -26,8 +28,6 @@ public class MkDir implements ICommand{
             System.out.println("Encountered an exception: " + e.getMessage());
         }
     }
-
-
 
     @Override
     public void PutArgs(String[] args) throws Exception {
@@ -37,6 +37,5 @@ public class MkDir implements ICommand{
         else{
             throw new CommandsException("InValid Args");
         }
-
     }
 }

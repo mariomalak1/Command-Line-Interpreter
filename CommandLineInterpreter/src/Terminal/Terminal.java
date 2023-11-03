@@ -78,6 +78,11 @@ public class Terminal {
             Commands.runCommandAction(command, this.parser);
         }
 
+        else if (this.parser.getCommandName().equals(Commands.commandsEnum.CAT.getCommandName())) {
+            command = new CAT();
+            Commands.runCommandAction(command, this.parser);
+        }
+
         else if (this.parser.getCommandName().equals(Commands.commandsEnum.ls.getCommandName())) {
             if(parser.args.length>0&&parser.args[0].equals("-r")){
                 command = new LS_R();

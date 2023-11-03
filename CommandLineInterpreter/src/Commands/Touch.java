@@ -17,7 +17,7 @@ public  class Touch implements ICommand {
             File myFile = new File(str);
             myFile.createNewFile();
         } catch (IOException E) {
-            System.out.println(E.getMessage());
+            System.err.println(E.getMessage());
         }
     }
 
