@@ -72,9 +72,7 @@ public final class RM_Dir implements ICommand{
     public void deleteEmptyDir_s() throws CommandsException, IOException {
         if (PathDir_or_asterisk.equals("*")){
             Path currentPath = PWD.CurrentAbsolutePath();
-
             DirectoryStream<Path> directories = Files.newDirectoryStream(currentPath, Files::isDirectory);
-
             for (Path directory : directories) {
                 // this function check that the dir is empty
                 deleteDir(directory);
