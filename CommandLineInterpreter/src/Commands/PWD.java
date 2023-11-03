@@ -18,12 +18,11 @@ public final class PWD implements ICommand{
     }
 
     public static Path CurrentAbsolutePath(){
-        Path currRelativePath = Paths.get("");
-        return currRelativePath.toAbsolutePath();
+        return Paths.get(System.getProperty("user.dir")).toAbsolutePath();
     }
 
     @Override
     public void runCommand() {
-        System.out.println(System.getProperty("user.dir"));
+        System.out.println(CurrentAbsolutePath());
     }
 }

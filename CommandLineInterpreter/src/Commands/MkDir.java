@@ -11,11 +11,24 @@ public class MkDir implements ICommand{
 
     @Override
     public void runCommand() {
+<<<<<<< HEAD
         File [] directory = new File[str.length];
         if(str.length>1){
 
             for(int i =0;i<str.length;i++){
                  directory[i] = new File(str[i]).getAbsoluteFile();
+=======
+        MakeDirInCurrentPath(str);
+    }
+
+    public static void MakeDirInCurrentPath(String path){
+        File directory = new File(path);
+        try {
+            if (directory.mkdir()) {
+                System.out.println();
+            } else {
+                System.err.println("Directory cannot be created");
+>>>>>>> 19d17e217fa149d69b7a88d2c581d158b4e72464
             }
         }
         else{
@@ -38,8 +51,6 @@ public class MkDir implements ICommand{
 
     }
 
-
-
     @Override
     public void PutArgs(String[] args) throws Exception {
         str =new String[args.length];
@@ -56,6 +67,5 @@ public class MkDir implements ICommand{
         else{
             throw new CommandsException("InValid Args");
         }
-
     }
 }
